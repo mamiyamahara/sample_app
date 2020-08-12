@@ -10,15 +10,15 @@ class TodolistsController < ApplicationController
   	# 2.データをデータベースに保存するためのsaveメソッド実行
   	list.save
   	# 3.トップ画面へリダイレクト
-  	redirect_to todolist_path(list.id)
+  	redirect_to todolists_path(list.id)
 end
 
   def index
-  	@lists = List.all
+    @lists = List.all
 end
 
   def show
-  	@list = List.find(params[:id])
+    @list = List.find(params[:id])
 end
 
   def edit
@@ -30,6 +30,11 @@ end
     redirect_to todolists_path(list.id)
   end
 
+  def destroy
+    list = List.find(params[:id])
+    list.destroy
+    redirect_to todolists_path
+  end
 
 private
 #  ストロングパラメータ
